@@ -29,7 +29,7 @@ jobs:
       run: |
         cd frontend
         docker build -t tienda-frontend .
-        docker tag tienda-frontend:latest ${{ secrets.ECR_REPO_URL_FRONTEND }}:latest
+        docker tag tienda-frontend-image:latest ${{ secrets.ECR_REPO_URL_FRONTEND }}:latest
         docker push ${{ secrets.ECR_REPO_URL_FRONTEND }}:latest
 
     - name: Desplegar Frontend vía SSM
