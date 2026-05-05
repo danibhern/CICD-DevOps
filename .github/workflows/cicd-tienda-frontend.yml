@@ -22,6 +22,11 @@ jobs:
         aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
         aws-region: ${{ secrets.AWS_REGION }}
 
+    - name: Login a ECR (para permitir docker push)
+      run: |
+        aws ecr get-login-password --region ${{ secrets.AWS_REGION }} \
+        | docker login --username AWS --password-stdin ${{ secrets.ECR_REGISTRY }}
+
     - name: Build imagen Frontend y push a ECR
       run: |
         cd frontend
